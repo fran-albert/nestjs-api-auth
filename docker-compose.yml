@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:latest
+    cap_add:
+      - SYS_NICE
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USERNAME}
+    ports:
+      - '${DB_PORT}:5432'
+    volumes:
+      - ./data/postgresql/:/var/lib/postgresql
+    env_file:
+      - .env
